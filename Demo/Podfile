@@ -1,0 +1,20 @@
+platform :ios, '7.0'
+
+pod 'YMPromptKit', :path => '../'
+
+target 'YMPromptKitDemo' do
+
+# post_install do |installer_representation|
+#   installer_representation.project.targets.each do |target|
+#     target.build_configurations.each do |config|
+#       config.build_settings['SDKROOT'] = 'iphoneos7.1'
+#     end
+#   end
+# end
+
+end
+
+target 'YMPromptKitDemoTests' do
+
+end
+
