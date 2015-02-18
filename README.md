@@ -8,11 +8,11 @@ YMPromptKit attempts to simplify your app code by providing flexible and extensi
 ### The two types of prompts
 
 1. **Hard Prompt** - A hard prompt is the typical dialog presented by iOS to obtain a user's permission for accessing a protected resource (such as their location or contacts). This prompt is considered hard because after showing it, the outcome cannot be easily changed.
-2. **Soft Prompt** - A prompt is soft when it's results are not locked in. A soft prompt may be displayed several times, affording the application a second (or third or fourth) chance to present it's value proposition to the user.
+2. **Soft Prompt** - A prompt is soft when its results are not locked in. A soft prompt may be displayed several times, affording the application a second (or third or fourth) chance to present it's value proposition to the user.
 
 ### Why you need soft prompts
 
-Tohe most well known hard prompt in iOS is that of push notifications. The value of these notifications cannot be overstated. Apps live and die by their ability – or lack of ability – to pop up highly relevant, immediately actionable alerts on your mobile device's screen. Unfortunately, once a user declines to allow you the right to push notifications at them, you have little recourse (few users will go through the trouble of manually re-enabling the feature). This has been [discussed at length](http://techcrunch.com/2014/04/04/the-right-way-to-ask-users-for-ios-permissions/).
+The most well known hard prompt in iOS is that of push notifications. The value of these notifications cannot be overstated. Apps live and die by their ability – or lack of ability – to pop up highly relevant, immediately actionable alerts on your mobile device's screen. Unfortunately, once a user declines to allow you the right to push notifications at them, you have little recourse (few users will go through the trouble of manually re-enabling the feature). This has been [discussed at length](http://techcrunch.com/2014/04/04/the-right-way-to-ask-users-for-ios-permissions/).
 
 Installation
 ===========
@@ -66,7 +66,7 @@ Additional proprietary prompts can also be added as needed, such as requesting a
 
 ### Basic Push Notification Prompt
 
-![basic prompt](https://cloud.githubusercontent.com/assets/727953/6237604/548c53c6-b6c2-11e4-865b-51cb728de545.png)
+![basic prompt](https://cloud.githubusercontent.com/assets/727953/6240312/b7613fb2-b6da-11e4-929b-894e606332eb.png)
 
 The very first thing you need to do is include the header file for YMPromptKit and allocate space for an instance of `YMPromptManager`
 ```objc
@@ -155,12 +155,12 @@ Add a delegate method to give the prompt manager some application-specific guida
 - (BOOL)promptManager:(YMPromptManager *)manager shouldRequestAccessType:(YMPromptAccessType)accessType
                 modes:(YMPromptAccessMode)modes {
     
-    NSArray *propmptLog = [manager.log promptHistory:accessType];
+    NSArray *promptLog = [manager.log promptHistory:accessType];
     
-    if (propmptLog.count > 3) {
+    if (promptLog.count > 3) {
         return NO;                              // enforce the request limit
-    } else if (propmptLog.count) {
-        NSDictionary *dict = propmptLog[0];     // data for the most recent history entry
+    } else if (promptLog.count) {
+        NSDictionary *dict = promptLog[0];     // data for the most recent history entry
         NSDate *lastPromptDate = dict[kYMPromptLogDateKey];
         NSTimeInterval interval = -3600 * 48;   // 2 days, in seconds
         
@@ -198,12 +198,12 @@ Now, each event will have an associated dictionary that contains the session num
 - (BOOL)promptManager:(YMPromptManager *)manager shouldRequestAccessType:(YMPromptAccessType)accessType
                 modes:(YMPromptAccessMode)modes {
     
-    NSArray *propmptLog = [manager.log promptHistory:accessType];
+    NSArray *promptLog = [manager.log promptHistory:accessType];
     
-    if (propmptLog.count > 3) {
+    if (promptLog.count > 3) {
         return NO;                              // enforce the request limit
-    } else if (propmptLog.count) {
-        NSDictionary *dict = propmptLog[0];     // data for the most recent history entry
+    } else if (promptLog.count) {
+        NSDictionary *dict = promptLog[0];     // data for the most recent history entry
         NSDate *lastPromptDate = dict[kYMPromptLogDateKey];
         NSTimeInterval interval = -3600 * 48;   // 2 days, in seconds
         
@@ -231,7 +231,7 @@ Now, each event will have an associated dictionary that contains the session num
 
 YMPromptKit leverages [SDCAlertView](https://github.com/sberrevoets/SDCAlertView) to provide flexible, native iOS-like alerts. One key benefit afforded by this design is that soft prompts may include an embedded custom view – even on iOS 7.
 
-![image in prompt](https://cloud.githubusercontent.com/assets/727953/6237603/548c428c-b6c2-11e4-8ad2-6777d7895cb2.png)
+![image in prompt](https://cloud.githubusercontent.com/assets/727953/6240249/e7d59d42-b6d9-11e4-8d9b-f0798779a7b6.png)
 
 Let's add an image like the one shown above, using the running example:
 ```objc
