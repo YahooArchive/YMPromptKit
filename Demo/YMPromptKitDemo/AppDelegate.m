@@ -119,12 +119,12 @@
 - (BOOL)promptManager:(YMPromptManager *)manager shouldRequestAccessType:(YMPromptAccessType)accessType
                 modes:(YMPromptAccessMode)modes {
     
-    NSArray *propmptLog = [manager.log promptHistory:accessType];
+    NSArray *promptLog = [manager.log promptHistory:accessType];
     
-    if (propmptLog.count > 3) {
+    if (promptLog.count > 3) {
         return NO;                              // enforce the request limit
-    } else if (propmptLog.count) {
-        NSDictionary *dict = propmptLog[0];     // data for the most recent history entry
+    } else if (promptLog.count) {
+        NSDictionary *dict = promptLog[0];     // data for the most recent history entry
         NSDate *lastPromptDate = dict[kYMPromptLogDateKey];
         NSTimeInterval interval = -3600 * 48;   // 2 days, in seconds
         

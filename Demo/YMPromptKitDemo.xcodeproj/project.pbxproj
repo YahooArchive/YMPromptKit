@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9605D225400FAF61F9D619E8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88705A329A46760E73E77C3E /* libPods.a */; };
+		FC2731E21A940E5C00C887D0 /* push-notification.png in Resources */ = {isa = PBXBuildFile; fileRef = FC2731E11A940E5C00C887D0 /* push-notification.png */; };
 		FCFCF6401A5DB13200D2E6FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCF63F1A5DB13200D2E6FD /* main.m */; };
 		FCFCF6431A5DB13200D2E6FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCF6421A5DB13200D2E6FD /* AppDelegate.m */; };
 		FCFCF6461A5DB13200D2E6FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCF6451A5DB13200D2E6FD /* ViewController.m */; };
@@ -30,6 +31,7 @@
 		197F5855894ADF6EEDC1D6BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		88705A329A46760E73E77C3E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFD2479691A9910048E41B6F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FC2731E11A940E5C00C887D0 /* push-notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push-notification.png"; sourceTree = "<group>"; };
 		FCFCF63A1A5DB13200D2E6FD /* YMPromptKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YMPromptKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCFCF63E1A5DB13200D2E6FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCFCF63F1A5DB13200D2E6FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		FCFCF63C1A5DB13200D2E6FD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FC2731E11A940E5C00C887D0 /* push-notification.png */,
 				FCFCF6411A5DB13200D2E6FD /* AppDelegate.h */,
 				FCFCF6421A5DB13200D2E6FD /* AppDelegate.m */,
 				FCFCF6441A5DB13200D2E6FD /* ViewController.h */,
@@ -225,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC2731E21A940E5C00C887D0 /* push-notification.png in Resources */,
 				FCFCF6491A5DB13200D2E6FD /* Main.storyboard in Resources */,
 				FCFCF64E1A5DB13200D2E6FD /* LaunchScreen.xib in Resources */,
 				FCFCF64B1A5DB13200D2E6FD /* Images.xcassets in Resources */,

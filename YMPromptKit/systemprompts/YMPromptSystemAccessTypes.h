@@ -12,19 +12,19 @@
 #ifndef Pods_YMPromptSystemAccessTypes_h
 #define Pods_YMPromptSystemAccessTypes_h
 
-/** Unique identifier for the photo library Propmtable */
+/** Unique identifier for the photo library Promptable */
 extern YMPromptAccessType const kYMPromptAccessTypePhotoLibrary;
-/** Unique identifier for the calendar events/reminders Propmtable */
+/** Unique identifier for the calendar events/reminders Promptable */
 extern YMPromptAccessType const kYMPromptAccessTypeEvents;
-/** Unique identifier for the contacts Propmtable */
+/** Unique identifier for the contacts Promptable */
 extern YMPromptAccessType const kYMPromptAccessTypeContacts;
-/** Unique identifier for the location Propmtable */
+/** Unique identifier for the location Promptable */
 extern YMPromptAccessType const kYMPromptAccessTypeLocation;
-/** Unique identifier for the microphone/recording Propmtable */
+/** Unique identifier for the microphone/recording Promptable */
 extern YMPromptAccessType const kYMPromptAccessTypeMicrophone;
-/** Unique identifier for the camera Propmtable */
+/** Unique identifier for the camera Promptable */
 extern YMPromptAccessType const kYMPromptAccessTypeCamera;
-/** Unique identifier for the remote notifications Propmtable */
+/** Unique identifier for the remote notifications Promptable */
 extern YMPromptAccessType const kYMPromptAccessTypeNotifications;
 
 #endif
