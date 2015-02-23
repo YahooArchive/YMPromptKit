@@ -59,7 +59,9 @@
 }
 
 - (void)requestAccess:(YMPromptLocationOptions)mode onComplete:(void(^)(BOOL))onComplete {
-    [self.pendingLocationCallbacks addObject:onComplete];
+    if (onComplete) {
+        [self.pendingLocationCallbacks addObject:onComplete];
+    }
     
     // iOS 8.0 gate
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -92,11 +94,14 @@
         status = NO;
     }
     
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.locationManager stopUpdatingLocation]; // For iOS <8x
         
         for (void(^onComplete)(BOOL) in self.pendingLocationCallbacks) {
-            onComplete(granted);
+            NSAssert(onComplete, @"Null completion callback for location permission request");
+            if (onComplete) { // extra caution
+                onComplete(granted);
+            }
         }
         [self.pendingLocationCallbacks removeAllObjects];
     });

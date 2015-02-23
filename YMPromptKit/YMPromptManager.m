@@ -77,6 +77,10 @@ void(^fallbackOnCompleteHandler)(BOOL,BOOL,YMPromptAuthorizationStatus) = ^(BOOL
     
     YMPromptAuthorizationStatus existingStatus = [self _authorizationStatus:type modes:modes];
     if (existingStatus != YMPromptAuthorizationStatusNotDetermined) {
+        // Always trigger the hard prompt code paths. No hard prompt should be shown because permission
+        // is already granted. This helps to ensure that weird context-specific flows are always triggered
+        // such as the `didRegisterUserNotificationSettings` callback in the AppDelegate.
+        [self _requestAccess:type modes:modes onComplete:nil];
         return onComplete(NO, NO, existingStatus); // indicate success
     }
     
@@ -91,6 +95,7 @@ void(^fallbackOnCompleteHandler)(BOOL,BOOL,YMPromptAuthorizationStatus) = ^(BOOL
 }
 
 - (void)showSoftPromptType:(YMPromptAccessType)type modes:(YMPromptAccessMode)modes onComplete:(void(^)(BOOL,BOOL))onComplete {
+    NSParameterAssert(onComplete);
     
     YMPrompt *prompt = [self.dataSource promptManager:self promptForAccessType:type modes:modes];
     __weak YMPromptManager *weakSelf = self;
@@ -119,6 +124,10 @@ void(^fallbackOnCompleteHandler)(BOOL,BOOL,YMPromptAuthorizationStatus) = ^(BOOL
 #ifdef YMPROMPTKIT_SDCALERT_ENABLE  /*********** SDCAlertView is available ***********/
 
 - (void)showSoftPrompt:(YMPrompt *)prompt beforePrompt:(void(^)())beforeShow onDeny:(void(^)())onDeny onGrant:(void(^)())onGrant {
+    NSParameterAssert(prompt);
+    NSParameterAssert(beforeShow);
+    NSParameterAssert(onDeny);
+    NSParameterAssert(onGrant);
     
     SDCAlertController *alert = [SDCAlertController YM_alertControllerWithPrompt:prompt denyHandler:^(SDCAlertAction *action) {
         onDeny();
@@ -139,6 +148,10 @@ void(^fallbackOnCompleteHandler)(BOOL,BOOL,YMPromptAuthorizationStatus) = ^(BOOL
 
 // Use iOS 7 or 8 native alerting system. No support for custom alert views.
 - (void)showSoftPrompt:(YMPrompt *)prompt beforePrompt:(void(^)())beforeShow onDeny:(void(^)())onDeny onGrant:(void(^)())onGrant {
+    NSParameterAssert(prompt);
+    NSParameterAssert(beforeShow);
+    NSParameterAssert(onDeny);
+    NSParameterAssert(onGrant);
     
     // iOS 8.0+
     if ([NSProcessInfo instancesRespondToSelector:@selector(isOperatingSystemAtLeastVersion:)]) {
@@ -186,7 +199,9 @@ void(^fallbackOnCompleteHandler)(BOOL,BOOL,YMPromptAuthorizationStatus) = ^(BOOL
     void(^onDeny)() = self.onDeny;
     self.onGrant = nil;
     self.onDeny = nil;
-    onDeny();
+    if (onDeny) {
+        onDeny();
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -228,6 +243,11 @@ void(^fallbackOnCompleteHandler)(BOOL,BOOL,YMPromptAuthorizationStatus) = ^(BOOL
 }
 
 - (id<YMPromptable>)registerPrompt:(id<YMPromptable>)promptable {
+    NSParameterAssert(promptable);
+    if (!promptable) {
+        return nil;
+    }
+    
     YMPromptAccessType key = [[promptable class] identifier];
     id<YMPromptable> previous = self.promptHandlers[key];
     self.promptHandlers[key] = promptable;
@@ -235,6 +255,10 @@ void(^fallbackOnCompleteHandler)(BOOL,BOOL,YMPromptAuthorizationStatus) = ^(BOOL
 }
 
 - (id<YMPromptable>)promptForIdentifier:(NSString *)identifier {
+    NSParameterAssert(identifier);
+    if (!identifier) {
+        return nil;
+    }
     return self.promptHandlers[identifier];
 }
 
