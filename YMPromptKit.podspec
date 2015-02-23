@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name            = "YMPromptKit"
-  s.version         = "1.0.0"
+  s.version         = "1.0.1"
   s.summary         = "An iOS soft prompting tookit by Yahoo!"
 
   s.description     = <<-DESC
