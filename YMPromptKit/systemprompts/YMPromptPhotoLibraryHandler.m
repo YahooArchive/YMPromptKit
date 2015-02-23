@@ -42,12 +42,14 @@
 - (void)requestAccess:(YMPromptAccessMode)modes onComplete:(void(^)(BOOL))onComplete {
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     [library enumerateGroupsWithTypes:ALAssetsGroupLibrary usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        if (group != nil) {
+        if (group != nil && onComplete) {
             onComplete(YES);
         }
         *stop = YES;
     } failureBlock:^(NSError *error) {
-        onComplete(NO);
+        if (onComplete) {
+            onComplete(NO);
+        }
     }];
 }
 

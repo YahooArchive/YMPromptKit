@@ -35,9 +35,11 @@
 
 - (void)requestAccess:(YMPromptAccessMode)modes onComplete:(void(^)(BOOL))onComplete {
     ABAddressBookRequestAccessWithCompletion(NULL, ^(bool granted, CFErrorRef error) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            onComplete(granted);
-        });
+        if (onComplete) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                onComplete(granted);
+            });
+        }
     });
 }
 

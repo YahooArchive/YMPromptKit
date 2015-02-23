@@ -50,7 +50,9 @@
 }
 
 - (void)requestAccess:(YMPromptNotificationOptions)modes onComplete:(void(^)(BOOL))onComplete {
-    [_pendingNotificationsCallbacks addObject:onComplete];
+    if (onComplete) {
+        [_pendingNotificationsCallbacks addObject:onComplete];
+    }
     
     UIApplication *app = [UIApplication sharedApplication];
     if ([app respondsToSelector:@selector(registerForRemoteNotifications)]) { // iOS 8
@@ -82,7 +84,10 @@
 
 - (void)recordNotificationRegistrationResult:(BOOL)didSucceed {
     for (void(^onComplete)(BOOL) in self.pendingNotificationsCallbacks) {
-        onComplete(didSucceed);
+        NSAssert(onComplete, @"Null completion callback for notification permission request");
+        if (onComplete) { // extra cautious
+            onComplete(didSucceed);
+        }
     }
     [self.pendingNotificationsCallbacks removeAllObjects];
 }

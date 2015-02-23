@@ -34,7 +34,9 @@
 
 - (void)requestAccess:(EKEntityType)entityType onComplete:(void(^)(BOOL))onComplete {
     [[EKEventStore new] requestAccessToEntityType:entityType completion:^(BOOL granted, NSError *error) {
-        onComplete(granted);
+        if (onComplete) {
+            onComplete(granted);
+        }
     }];
 }
 
