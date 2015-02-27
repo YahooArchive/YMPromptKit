@@ -1,1 +1,8 @@
 language: objective-c
+before_install:
+    - export LANG=en_US.UTF-8
+    - gem install cocoapods xcpretty -N
+    - cd Demo && pod install
+    - cd ..
+    - set -o pipefail
+script: xcodebuild -workspace Demo/YMPromptKitDemo.xcworkspace -scheme YMPromptKitDemo -sdk iphonesimulator -configuration Debug test | xcpretty -c
