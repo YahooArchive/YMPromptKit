@@ -12,6 +12,4 @@
 
 @interface YMPromptMicrophoneHandler : YMPromptAVHandler <YMPromptable>
 
-@property (nonatomic) NSString *identifier;
-
 @end

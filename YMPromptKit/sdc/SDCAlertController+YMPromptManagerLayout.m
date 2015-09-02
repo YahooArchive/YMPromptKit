@@ -47,11 +47,11 @@
     }
     
     [alert addAction:[SDCAlertAction actionWithTitle:prompt.denyButtonTitle
-                                               style:SDCAlertActionStyleCancel
+                                               style:SDCAlertActionStyleDefault
                                              handler:onDeny]];
     
     [alert addAction:[SDCAlertAction actionWithTitle:prompt.grantButtonTitle
-                                               style:SDCAlertActionStyleDefault
+                                               style:SDCAlertActionStyleRecommended
                                              handler:onGrant]];
     
     return alert;

@@ -12,6 +12,4 @@
 
 @interface YMPromptCameraHandler : YMPromptAVHandler <YMPromptable>
 
-@property (nonatomic) NSString *identifier;
-
 @end
