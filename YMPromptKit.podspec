@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name            = "YMPromptKit"
-  s.version         = "1.0.1"
+  s.version         = "1.0.2"
   s.summary         = "An iOS soft prompting tookit by Yahoo!"
 
   s.description     = <<-DESC
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'SDCAlerts' do |ss|
     ss.dependency 'YMPromptKit/Core'
-    ss.dependency "SDCAlertView", "~> 2.1.1"
+    ss.dependency "SDCAlertView", "~> 2.5.2"
     ss.source_files = "YMPromptKit/sdc/*.{h,m}"
     ss.xcconfig = { 'OTHER_CFLAGS' => '-DYMPROMPTKIT_SDCALERT_ENABLE=1' }
   end
