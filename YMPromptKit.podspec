@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'SDCAlerts' do |ss|
     ss.dependency 'YMPromptKit/Core'
-    ss.dependency "SDCAlertView", "~> 2.5.2"
+    ss.dependency "SDCAlertView", "~> 2.5"
     ss.source_files = "YMPromptKit/sdc/*.{h,m}"
     ss.xcconfig = { 'OTHER_CFLAGS' => '-DYMPROMPTKIT_SDCALERT_ENABLE=1' }
   end
