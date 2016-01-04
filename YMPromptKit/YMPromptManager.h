@@ -127,6 +127,10 @@
  * Request access to the protected resource specified by `type`. The meaning of the `modes` parameter
  * depends on the context of the requested `YMPromptAccessType`. The `onComplete` parameter is called
  * with arguments that match the result of the soft prompt flow.
+ *
+ * NOTE: the delegate's shouldRequestAccessType callback may be called during this method to see if a
+ * soft prompt should even be shown.  If it returns NO (suppressing the soft prompt), the onComplete
+ * callback is NOT called.
  */
 - (void)requestAccess:(YMPromptAccessType)type
                 modes:(YMPromptAccessMode)modes
