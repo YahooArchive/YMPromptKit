@@ -86,7 +86,7 @@ void(^fallbackOnCompleteHandler)(BOOL,BOOL,YMPromptAuthorizationStatus) = ^(BOOL
     
     if ([self.delegate respondsToSelector:@selector(promptManager:shouldRequestAccessType:modes:)]
         && ![self.delegate promptManager:self shouldRequestAccessType:type modes:modes]) {
-        return onComplete(NO, NO, existingStatus); // indicate denied & no prompt was permitted due to application rules
+        return; // app delegate callback decided not to show the prompt at this moment - no callback in this case
     }
     
     [self showSoftPromptType:type modes:modes onComplete:^(BOOL softPromptAccepted, BOOL osPromptAccepted) {
